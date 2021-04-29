@@ -1,7 +1,7 @@
-# Desafio - Docker GO
+# Challenge - Docker GO
 ## Instructions
 
-#### **Imagem:**
+#### **Image:**
 elbesh/codeeducation
 
 #### **Docker Build**
