@@ -6,3 +6,24 @@ services:
             dockerfile: dockerfiles/nginx.dockerfile
         ports:
             - 8080:80
+        depends_on:
+            - node
+
+    node:
+        build:
+            context: .
+            dockerfile: dockerfiles/node.dockerfile
+        depends_on:
+            mysql:
+                condition: service_healthy
+
+    mysql:
+        build:
+            context: .
+            dockerfile: dockerfiles/mysql.dockerfile
+        env_file:
+            - .env
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 10s
+            retries: 10
